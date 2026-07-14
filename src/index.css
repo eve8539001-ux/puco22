@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #F5F5F7;
+  --bg-card: #FFFFFF;
+  --text-main: #111111;
+  --text-muted: #737373;
+  --primary: #1463FF;
+  --primary-hover: #0a4ecc;
+  --border: #E5E5EA;
+  --shadow-card: 0 2px 18px rgba(20, 20, 30, 0.05);
+  --radius-card: 22px;
+  --radius-pill: 9999px;
+  --radius-sm: 12px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+code, .font-mono {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.card {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 28px;
+}
+
+.sub-card {
+  background-color: #F8F8F9;
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  height: 100%;
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.code-tag {
+  background-color: rgba(20, 99, 255, 0.08);
+  color: var(--primary);
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+button {
+  transition: all 0.2s ease;
+}
+
+button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid rgba(20, 99, 255, 0.4);
+  outline-offset: 2px;
+}
+
+textarea:focus {
+  border-color: var(--primary) !important;
+}
+
+.chip {
+  background: #F0F0F2;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s;
+}
+.chip:hover {
+  background: #E5E5EA;
+  color: var(--text-main);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .fade-in {
+    animation: fadeIn 0.4s ease forwards;
+  }
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Grid for bottom panels */
+.reaction-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+@media (min-width: 768px) {
+  .reaction-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
