@@ -1,4 +1,5 @@
-import db from '../src/data/puco_capability_db.json';
+import rawDb from '../src/data/puco_capability_db.json';
+const db = (rawDb && (rawDb as any).default ? (rawDb as any).default : rawDb) as any;
 import { snPromptTemplate, reactionPromptTemplate } from './prompt';
 import { findByCode } from '../src/data/loadDB';
 

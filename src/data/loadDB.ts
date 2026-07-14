@@ -16,7 +16,7 @@ export interface CapabilityDB {
   SP: CapabilityItem[];
 }
 
-export const db: CapabilityDB = capabilityData as CapabilityDB;
+export const db: CapabilityDB = (capabilityData && (capabilityData as any).default ? (capabilityData as any).default : capabilityData) as CapabilityDB;
 
 const EXPECTED_COUNTS = {
   SN: 15,
