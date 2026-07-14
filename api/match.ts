@@ -61,9 +61,23 @@ export default async function handler(req: any, res: any) {
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
-  if (!apiKey) {
-    console.error('ANTHROPIC_API_KEY is missing');
-    return res.status(500).json({ error: 'API Key not configured' });
+  if (!apiKey || apiKey === 'undefined' || apiKey === 'FREE_MODE') {
+    console.warn('Using FREE_MODE because API Key is missing');
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(res.status(200).json({
+          summary: "사용자가 다가오는 상황을 인지하여 반응합니다. (무료 데모 모드)",
+          activationSummary: "카메라·모션·스피커 활성화, 거리측정 불필요",
+          missingIntent: false,
+          intentNote: "",
+          sensorGroups: { tof: false, camera: true },
+          SN: [ { code: "SN-C-01", reason: "사용자의 동작과 접근을 카메라로 감지함" } ],
+          MP: [ { code: "MP-C01", reason: "사용자에게 다가가는 동작으로 반응함" } ],
+          PJ: [ { code: "PJ-A01", reason: "투사 준비를 위한 기본 화면 렌더링" } ],
+          SP: [ { code: "SP-A01", reason: "짧은 효과음으로 상태 전환을 알림" } ]
+        }));
+      }, 2000);
+    });
   }
 
   const { scenario } = req.body || {};
