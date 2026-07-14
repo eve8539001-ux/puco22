@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchMatch, type MatchResult, type MatchResultItem } from './lib/matchClient';
 import { findByCode, intentKeywords } from './data/loadDB';
 import './index.css';

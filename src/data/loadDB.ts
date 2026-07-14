@@ -28,7 +28,6 @@ const EXPECTED_COUNTS = {
 const EXPECTED_TOTAL = 115;
 
 let actualTotal = 0;
-let hasMismatch = false;
 
 for (const [key, expectedCount] of Object.entries(EXPECTED_COUNTS)) {
   const categoryKey = key as keyof CapabilityDB;
@@ -37,13 +36,11 @@ for (const [key, expectedCount] of Object.entries(EXPECTED_COUNTS)) {
 
   if (actualCount !== expectedCount) {
     console.warn(`[DB Validation] Category ${categoryKey} expected ${expectedCount} items, but got ${actualCount}`);
-    hasMismatch = true;
   }
 }
 
 if (actualTotal !== EXPECTED_TOTAL) {
   console.warn(`[DB Validation] Total expected ${EXPECTED_TOTAL} items, but got ${actualTotal}`);
-  hasMismatch = true;
 }
 
 export function findByCode(category: keyof CapabilityDB, code: string): CapabilityItem | undefined {
